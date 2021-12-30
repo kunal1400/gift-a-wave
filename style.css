@@ -1,0 +1,196 @@
+/*
+Theme Name: Gift A Wave
+Theme URI: https://www.lyrathemes.com/blog/bootstrap-wordpress-theme-tutorial/
+Author: Kunal Malviya
+Author URI: https://www.lyrathemes.com
+Description: A basic theme using the Bootstrap framework.
+Version: 1.0.1
+Text Domain: bootstrapstarter
+*/
+/* .gawLoopCaption .woocommerce-loop-product__title {
+  display: none;
+} */
+.mainmenu .menu-item .downloadPreviewButtons i{
+  float: none;
+  margin: 0;
+  line-height: normal !important;
+}
+
+body {
+  font-size: 16px;
+}
+.woocommerce table.my_account_orders {
+  font-size: unset;
+}
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product {
+    background-color: #f1f1f1;
+}
+.woocommerce ul.products li.product .gawLoopCaption .price {
+    color: #fff;
+    display: unset;
+    margin: 12px 0px 19px 0px;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+/* ul.products li>.add_to_cart_button {
+  display: none;
+} */
+.woocommerce .woocommerce ul.products .gawLoopCaption h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-transform: capitalize;
+    padding: 0;
+}
+.addtocartcustomize {
+  margin-bottom: 10px;
+}
+.woocommerce ul.products li.product .button.add_to_cart_button{
+  text-decoration: none;
+  color: #000 !important;
+  box-shadow: 0 0 20px rgba(0,0,0,.1);
+  margin: 0;
+  border:2px solid #324ece;
+  font-weight:500;
+  font-size:15px;
+  cursor:pointer;
+  text-transform: capitalize;
+  padding: 12px 35px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.woocommerce ul.products li.product .button.add_to_cart_button:hover{
+  color:#fff !important;
+  background:#324ece;
+}
+.cover-container {
+  height: 100vh;
+}
+.woocommerce ul.products li.gaw_product_loop_item a img{
+  margin: 0
+}
+.woocommerce .gaw_product_loop_item.product .price {
+  color: #DB1134 !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+.woocommerce ul.products li.gaw_product_loop_item .woocommerce-loop-product__title {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.woocommerce ul.products li.gaw_product_loop_item .button_wrappers a:first-child {
+  display: none;
+}
+.woocommerce .quantity .qty {
+    padding: 0;
+}
+.woocommerce-page table.cart td.actions .input-text {
+  width: 150px;
+}
+.woocommerce form .form-row label {
+    line-height: normal;
+    width: 100%;
+    display: block;
+}
+span.woocommerce-input-wrapper {
+    width: 100%;
+    line-height: normal;
+}
+.woocommerce form .form-row {
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+/*** Product Customizer css start ***/
+.outputwaveimage {
+  position: relative;
+  background: #f4f3f3;
+  text-shadow: none;
+  overflow: scroll;
+}
+.outputwaveimage canvas {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 6%);
+    -moz-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.06);
+    -ms-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.06);
+    -webkit-box-shadow: 0 10px 20px 0 rgb(0 0 0 / 6%);
+}
+body .bpack-btn-four,
+body .bpack-btn-three,
+body .bpack-btn-eight,
+body .bpack-btn-nine {
+  margin-left: 0;
+}
+body .downloadPreviewButtons {
+  margin: 15px 0;
+  padding: 10px 15px;
+}
+/*** END ***/
+.list-group-item.is-active a {
+  color: #fff;
+}
+.list-group-item.is-active {
+    z-index: 2;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.giftawave-navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 34px !important;
+    font-family: 'Montserrat' ,sans-serif;
+    color: #000;
+    display: inline-block;
+    line-height: normal;
+}
+.youtubewrapper iframe{
+    width: 100%;
+    min-height: 320px;
+    height: auto;
+}
+
+/**
+* WooCommerce Navigation CSS
+**/
+.woocommerce nav.woocommerce-pagination ul li {
+  border-right: 4px solid #fff;
+  background: white !important;
+}
+.page-numbers {
+  border: none !important;
+}
+.woocommerce-pagination .page-numbers a:link, .woocommerce-pagination .page-numbers a:visited {
+  display: block !important;
+  background: #77a464 !important;
+  color: #363636 !important;
+  padding: 10px 14px !important;
+}
+.woocommerce-pagination .page-numbers a:link, .woocommerce-pagination .page-numbers a:hover {
+  display: block !important;
+  background: #fff !important;
+  color: #363636 !important;
+}
+.woocommerce-pagination .page-numbers .current, .woocommerce-pagination .page-numbers li a:hover {
+  padding: 10px 14px !important;
+  background: #77A464 !important;
+  color: #fff !important;
+}
