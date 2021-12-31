@@ -1,7 +1,10 @@
 <?php
-
 /**
-* Adding more options for canvas on header
+* 
+* Handling the menu dynamically that if current page is wave design page then showing download
+* and preview buttons.
+*
+* For all page showing cart icon.
 **/
 function add_last_nav_item( $items ) {
   $isValidOrderPage = false;
@@ -21,31 +24,41 @@ function add_last_nav_item( $items ) {
   }
 
   if($isValidOrderPage) {
-    return $items .= '<li class="menu-item">
-      <a href="#" onclick="downloadCanvas()" title="Download" class="downloadPreviewButtons">
-        <i class="fa fa-cloud-download" aria-hidden="true"></i> Download
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="#" title="Preview in new tab" onclick="designWaveObject.openCanvasInNewTab()" class="downloadPreviewButtons">
-        <i class="fa fa-eye" aria-hidden="true"></i> Preview
-      </a>
-    </li>';
+    $items .= '<li class="menu-item">
+        <a href="#" onclick="downloadCanvas()" title="Download" class="downloadPreviewButtons">
+          <i class="fa fa-cloud-download" aria-hidden="true"></i> Download
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="#" title="Preview in new tab" onclick="designWaveObject.openCanvasInNewTab()" class="downloadPreviewButtons">
+          <i class="fa fa-eye" aria-hidden="true"></i> Preview
+        </a>
+      </li>';
   }
-  else {
-    return $items;
-  }
+
+  // Adding the cart icon to the menu
+  // $cart_count = WC()->cart->cart_contents_count;
+  $items .= '<li class="menu-item">
+    <a href="'.wc_get_cart_url().'" title="" class="downloadPreviewButtons">
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+    </a>
+  </li>';
+  return $items;
 }
 add_filter('wp_nav_menu_items','add_last_nav_item');
 
+
+/**
+* Adding all css file required in this theme, also keep an eye for better performance
+**/
 function bootstrapstarter_enqueue_styles() {
     wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css' );
     $dependencies = array('bootstrap');
     wp_enqueue_style( 'bootstrapstarter-css', get_stylesheet_uri(), $dependencies );
     wp_enqueue_style( 'font-awesome.min-css', get_template_directory_uri() . '/css/font-awesome.min.css', $dependencies );
-    wp_enqueue_style( 'animate.min-css', get_template_directory_uri() . '/css/animate.min.css', $dependencies );
+    // wp_enqueue_style( 'animate.min-css', get_template_directory_uri() . '/css/animate.min.css', $dependencies );
     wp_enqueue_style( 'slicknav-css', get_template_directory_uri() . '/css/slicknav.css', $dependencies );
-    wp_enqueue_style( 'slick-css', get_template_directory_uri() . '/css/slick.css', $dependencies );
+    // wp_enqueue_style( 'slick-css', get_template_directory_uri() . '/css/slick.css', $dependencies );
     // wp_enqueue_style( 'aos-css', get_template_directory_uri() . '/css/aos.css', $dependencies );
     // wp_enqueue_style( 'slick-theme-css', get_template_directory_uri() . '/css/slick-theme.css', $dependencies );
     // wp_enqueue_style( 'swiper.min-css', get_template_directory_uri() . '/css/swiper.min.css', $dependencies );
@@ -57,6 +70,10 @@ function bootstrapstarter_enqueue_styles() {
     wp_enqueue_style( 'megapack-responsive-css', get_template_directory_uri() . '/css/megapack-responsive.css', $dependencies );
 }
 
+
+/**
+* Adding all js file required in this theme, also keep an eye for better performance
+**/
 function bootstrapstarter_enqueue_scripts() {
     $dependencies = array('jquery');
     wp_enqueue_script('modernizr-3.6.0.min.js', get_template_directory_uri().'/js/vendor/modernizr-3.6.0.min.js', $dependencies, '3.3.6', true );
@@ -80,20 +97,28 @@ function bootstrapstarter_enqueue_scripts() {
     // wp_enqueue_script('swiper.min.js', get_template_directory_uri().'/js/swiper.min.js', $dependencies, '3.3.6', true );
     // wp_enqueue_script('jquery.parallax-1.1.3.js', get_template_directory_uri().'/js/jquery.parallax-1.1.3.js', $dependencies, '3.3.6', true );
     // wp_enqueue_script('owl.carousel.min.js', get_template_directory_uri().'/js/owl.carousel.min.js', $dependencies, '3.3.6', true );
-    wp_enqueue_script('jquery.scrollUp.min.js', get_template_directory_uri().'/js/jquery.scrollUp.min.js', $dependencies, '3.3.6', true );
+    // wp_enqueue_script('jquery.scrollUp.min.js', get_template_directory_uri().'/js/jquery.scrollUp.min.js', $dependencies, '3.3.6', true );
     // wp_enqueue_script('megapack-main.js', get_template_directory_uri().'/js/megapack-main.js', $dependencies, '3.3.6', true );
+    wp_enqueue_script('gaw_main.js', get_template_directory_uri().'/js/gaw_main.js', $dependencies, '3.3.6', true );
 }
-
 add_action( 'wp_enqueue_scripts', 'bootstrapstarter_enqueue_styles' );
 add_action( 'wp_enqueue_scripts', 'bootstrapstarter_enqueue_scripts' );
 
-function bootstrapstarter_wp_setup() {
+
+/**
+* Adding Theme support features
+**/
+function gaw_theme_setup() {
+    // Support for title tag
     add_theme_support( 'title-tag' );
 
+    // Support for woocommerce
     add_theme_support( 'woocommerce' );
 
+    // Adding primary navigations
     register_nav_menu( 'primary', __( 'Primary Menu', 'theme_name' ) );
 
+    // Adding support for custom logo
     add_theme_support( 'custom-logo', array(
         'height'               => 100,
         'width'                => 400,
@@ -103,6 +128,7 @@ function bootstrapstarter_wp_setup() {
         'unlink-homepage-logo' => true,
     ));
 
+    // Adding support for wave canvas sidebar
     register_sidebar( array(
         'name'          => __( 'Wave Customization Sidebar', 'theme_name' ),
         'id'            => 'wave-customization-sidebar',
@@ -112,36 +138,30 @@ function bootstrapstarter_wp_setup() {
         'after_title'   => '</h3>',
     ));
 }
-add_action( 'after_setup_theme', 'bootstrapstarter_wp_setup' );
-
+add_action( 'after_setup_theme', 'gaw_theme_setup' );
 
 
 /**
  * Change number of related products output
  */
-// function woo_related_products_limit() {
-//   global $product;
-// 	$args['posts_per_page'] = 6;
-// 	return $args;
-// }
-
-add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args', 20 );
 function jk_related_products_args( $args ) {
 	$args['posts_per_page'] = 3; // 4 related products
 	$args['columns'] = 3; // arranged in 2 columns
 	return $args;
 }
+add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args', 20 );
 
 
 /**
 * Change number or products per row to 3
 */
-add_filter('loop_shop_columns', 'loop_columns', 999);
 if (!function_exists('loop_columns')) {
 	function loop_columns() {
 		return 3; // 3 products per row
 	}
 }
+add_filter('loop_shop_columns', 'loop_columns', 999);
+
 
 /**
 * Adding class to product loop
@@ -154,16 +174,6 @@ add_filter('post_class', function($classes, $class, $product_id) {
     return $classes;
 },10,3);
 
-/**
-* For product detail page we are using single-product.php template
-**/
-// add_filter( 'template_include', 'custom_single_product_template_include', 50, 1 );
-// function custom_single_product_template_include( $template ) {
-//      if ( is_singular('product') ) {
-//            $template = get_stylesheet_directory() . '/woocommerce/single-product.php';
-//      }
-//      return $template;
-// }
 
 /**
  * Generate breadcrumbs
@@ -203,6 +213,7 @@ function new_excerpt_more($more) {
  return '<a class="mp-button" href="'. get_permalink($post->ID) . '"> Read More</a>';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
+
 
 /**
 * This function is returning the section of featured products by category slug
@@ -251,31 +262,20 @@ function get_products_html_section_by_slug( $featuredSlug ) {
 
 }
 
-// SVG Icons class.
+
+/**
+ * Including SVG Icons class
+ */
 require get_template_directory() . '/classes/gift-a-wave-svg-icons.php';
 
 /**
  * Gets the SVG code for a given icon.
- *
- * @since Twenty Twenty-One 1.0
- *
- * @param string $group The icon group.
- * @param string $icon  The icon.
- * @param int    $size  The icon size in pixels.
- * @return string
  */
 function gift_a_wave_get_icon_svg( $group, $icon, $size = 24 ) {
 	return Twenty_Twenty_One_SVG_Icons::get_svg( $group, $icon, $size );
 }
 
-if ( ! function_exists( 'gift_a_wave_posts_navigation' ) ) {
-	/**
-	 * Print the next and previous posts navigation.
-	 *
-	 * @since Twenty Twenty-One 1.0
-	 *
-	 * @return void
-	 */
+if ( ! function_exists( 'gift_a_wave_posts_navigation' ) ) {	
 	function gift_a_wave_posts_navigation() {
 		the_posts_pagination(
 			array(
