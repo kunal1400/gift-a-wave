@@ -7,70 +7,40 @@ Description: A basic theme using the Bootstrap framework.
 Version: 1.0.1
 Text Domain: bootstrapstarter
 */
-/* .gawLoopCaption .woocommerce-loop-product__title {
-  display: none;
-} */
+
+a {
+  color: #000;
+}
+a:hover,
+a:focus {
+  color: #000;
+}
+body .bpack-btn-four,
+body .bpack-btn-three,
+body .bpack-btn-eight,
+body .bpack-btn-nine {
+  margin-left: 0;
+}
+body .downloadPreviewButtons {
+  margin: 15px 0;
+  padding: 10px 15px;
+}
 .mainmenu .menu-item .downloadPreviewButtons i{
   float: none;
   margin: 0;
   line-height: normal !important;
 }
-
 body {
   font-size: 16px;
 }
 .woocommerce table.my_account_orders {
   font-size: unset;
 }
+
+/* Shop loop item CSS: Start */
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product {
-    background-color: #f1f1f1;
-}
-.woocommerce ul.products li.product .gawLoopCaption .price {
-    color: #fff;
-    display: unset;
-    margin: 12px 0px 19px 0px;
-    font-size: 1.2em;
-    font-weight: 500;
-}
-/* ul.products li>.add_to_cart_button {
-  display: none;
-} */
-.woocommerce .woocommerce ul.products .gawLoopCaption h3 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    text-transform: capitalize;
-    padding: 0;
-}
-.addtocartcustomize {
-  margin-bottom: 10px;
-}
-.woocommerce ul.products li.product .button.add_to_cart_button{
-  text-decoration: none;
-  color: #000 !important;
-  box-shadow: 0 0 20px rgba(0,0,0,.1);
-  margin: 0;
-  border:2px solid #324ece;
-  font-weight:500;
-  font-size:15px;
-  cursor:pointer;
-  text-transform: capitalize;
-  padding: 12px 35px;
-  border-radius: 3px;
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-.woocommerce ul.products li.product .button.add_to_cart_button:hover{
-  color:#fff !important;
-  background:#324ece;
-}
-.cover-container {
-  height: 100vh;
+  background-color: #f1f1f1;
 }
 .woocommerce ul.products li.gaw_product_loop_item a img{
   margin: 0
@@ -88,6 +58,64 @@ body {
 .woocommerce ul.products li.gaw_product_loop_item .button_wrappers a:first-child {
   display: none;
 }
+/* Display one product per row on mobile */
+@media only screen and (max-width: 768px){
+  .woocommerce ul.products[class*=columns-] li.product, .woocommerce-page ul.products[class*=columns-] li.product{
+    width: 100% !important;
+    clear: none!important;
+  }    
+}
+/* Shop loop item CSS: End */
+
+.addtocartcustomize {
+  margin-bottom: 10px;
+}
+
+/* Add to cart button css: Start */
+.add_to_cart_button,
+.woocommerce ul.products li.product .button.add_to_cart_button{
+  text-decoration: none;
+  color: #000 !important;
+  box-shadow: 0 0 20px rgba(0,0,0,.1);
+  background: #fff;
+  margin-left: 70px;
+  font-weight:500;
+  font-size:15px;
+  cursor:pointer;
+  text-transform: capitalize;
+  padding: 12px 35px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.add_to_cart_button:hover,
+.woocommerce ul.products li.product .button.add_to_cart_button:hover {
+  background:#324ece;
+  color:#fff !important;
+}
+.add_to_cart_button.active,
+.woocommerce ul.products li.product .button.add_to_cart_button.active{
+  background:#324ece;
+  color:#fff !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .add_to_cart_button,
+  .woocommerce ul.products li.product .button.add_to_cart_button {
+    margin-left: 32px;
+    font-size: 14px;
+    padding: 11px 25px;
+  }
+}
+/* Add to cart button css: END */
+
+.cover-container {
+  height: 100vh;
+}
+
 .woocommerce .quantity .qty {
     padding: 0;
 }
@@ -127,16 +155,7 @@ span.woocommerce-input-wrapper {
     -ms-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.06);
     -webkit-box-shadow: 0 10px 20px 0 rgb(0 0 0 / 6%);
 }
-body .bpack-btn-four,
-body .bpack-btn-three,
-body .bpack-btn-eight,
-body .bpack-btn-nine {
-  margin-left: 0;
-}
-body .downloadPreviewButtons {
-  margin: 15px 0;
-  padding: 10px 15px;
-}
+
 /*** END ***/
 .list-group-item.is-active a {
   color: #fff;
@@ -154,7 +173,7 @@ body .downloadPreviewButtons {
 
 .giftawave-navbar-brand {
     float: left;
-    padding: 15px 15px;
+    padding: 15px 0;
     font-size: 34px !important;
     font-family: 'Montserrat' ,sans-serif;
     color: #000;
@@ -167,9 +186,7 @@ body .downloadPreviewButtons {
     height: auto;
 }
 
-/**
-* WooCommerce Navigation CSS
-**/
+/** WooCommerce Pagination CSS Start **/
 .woocommerce nav.woocommerce-pagination ul li {
   border-right: 4px solid #fff;
   background: white !important;
@@ -177,19 +194,45 @@ body .downloadPreviewButtons {
 .page-numbers {
   border: none !important;
 }
-.woocommerce-pagination .page-numbers a:link, .woocommerce-pagination .page-numbers a:visited {
+.woocommerce-pagination .page-numbers a:link, 
+.woocommerce-pagination .page-numbers a:visited {
   display: block !important;
   background: #77a464 !important;
   color: #363636 !important;
   padding: 10px 14px !important;
 }
-.woocommerce-pagination .page-numbers a:link, .woocommerce-pagination .page-numbers a:hover {
+.woocommerce-pagination .page-numbers a:link, 
+.woocommerce-pagination .page-numbers a:hover {
   display: block !important;
   background: #fff !important;
   color: #363636 !important;
 }
-.woocommerce-pagination .page-numbers .current, .woocommerce-pagination .page-numbers li a:hover {
+.woocommerce-pagination .page-numbers .current, 
+.woocommerce-pagination .page-numbers li a:hover {
   padding: 10px 14px !important;
   background: #77A464 !important;
   color: #fff !important;
 }
+/** WooCommerce Pagination CSS END **/
+
+
+/* Header Mobile Navigation CSS - Start */
+.shop-nav .slicknav_btn,
+.logo {
+  margin: 0;
+}
+#nav-demo {
+  float: right;
+}
+@media only screen and (max-width: 767px) {
+  .mobile-menu .slicknav_menu {
+    margin-top: auto;
+  }
+}
+/* Header Mobile Navigation CSS - END */
+
+/** Footer CSS Start **/
+.demo-footer-wrapper .social-icon {
+  max-width: 100%;
+}
+/** Footer CSS End **/

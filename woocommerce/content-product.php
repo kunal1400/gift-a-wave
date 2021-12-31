@@ -28,7 +28,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
 		<?php do_action( 'woocommerce_before_shop_loop_item_title' ); ?>
-		<figcaption class="pb-3 pl-3 pr-3">
+		<figcaption class="p-3">
 			<?php do_action( 'woocommerce_shop_loop_item_title' ); ?>
 
 			<?php echo $product->get_meta('spotify_embed_code') ?>

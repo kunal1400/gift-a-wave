@@ -53,8 +53,7 @@ add_filter('wp_nav_menu_items','add_last_nav_item');
 **/
 function bootstrapstarter_enqueue_styles() {
     wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css' );
-    $dependencies = array('bootstrap');
-    wp_enqueue_style( 'bootstrapstarter-css', get_stylesheet_uri(), $dependencies );
+    $dependencies = array('bootstrap');    
     wp_enqueue_style( 'font-awesome.min-css', get_template_directory_uri() . '/css/font-awesome.min.css', $dependencies );
     // wp_enqueue_style( 'animate.min-css', get_template_directory_uri() . '/css/animate.min.css', $dependencies );
     wp_enqueue_style( 'slicknav-css', get_template_directory_uri() . '/css/slicknav.css', $dependencies );
@@ -68,6 +67,7 @@ function bootstrapstarter_enqueue_styles() {
     // wp_enqueue_style( 'owl.carousel.min-css', get_template_directory_uri() . '/css/owl.carousel.min.css', $dependencies );
     wp_enqueue_style( 'megapack-style-css', get_template_directory_uri() . '/css/megapack-style.css', $dependencies );
     wp_enqueue_style( 'megapack-responsive-css', get_template_directory_uri() . '/css/megapack-responsive.css', $dependencies );
+    wp_enqueue_style( 'gaw_style_css', get_stylesheet_uri(), $dependencies );
 }
 
 
@@ -229,16 +229,32 @@ function get_products_html_section_by_slug( $featuredSlug ) {
   ));
 
   while ( $loop->have_posts() ) : $loop->the_post();
-    global $product;
-    $products .= '<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-      <div class="image-card-wrapper mb-30">
-        <div class="image-card-img">
-         '.woocommerce_get_product_thumbnail( 'woocommerce_single' ).'
-        </div>
-        <div class="image-card-text">
-          <h4><a href="'.get_permalink().'">'.get_the_title().'</a></h4>
-          <a href="'.site_url( 'wave-design/?productId='.get_the_ID() ).'" class="bpack-btn-nine">Customize</a>
-        </div>
+    $_product = wc_get_product( $loop->post->ID );
+    $products .= '<div class="col-md-4 col-sm-12">
+      <div class="product-card-one">        
+         '.woocommerce_get_product_thumbnail( 'woocommerce_single' ).'        
+        <figcaption>
+          <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
+          <div class="price">'.$_product->get_price_html().'</div>
+          <div class="button_wrappers d-flex justify-content-between">
+            <a href="'.site_url( 'wave-design/?productId='.$loop->post->ID ).'" class="bpack-btn-nine">Customize</a>            
+              '.sprintf( '<a href="%s" data-quantity="1" class="%s add_to_cart_button" %s>%s</a>',
+                  esc_url( $_product->add_to_cart_url() ),
+                  esc_attr( implode( ' ', array_filter( array(
+                      'button', 'product_type_' . $_product->get_type(),
+                      $_product->is_purchasable() && $_product->is_in_stock() ? 'add_to_cart_button' : '',
+                      $_product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
+                  ) ) ) ),
+                  wc_implode_html_attributes( array(
+                      'data-product_id'  => $_product->get_id(),
+                      'data-product_sku' => $_product->get_sku(),
+                      'aria-label'       => $_product->add_to_cart_description(),
+                      'rel'              => 'nofollow',
+                  ) ),
+                  esc_html( $_product->add_to_cart_text() )
+              ).'
+          </div>
+        </figcaption>
       </div>
     </div>';
   endwhile;
@@ -246,7 +262,7 @@ function get_products_html_section_by_slug( $featuredSlug ) {
 
   return '<div id="" class="saas gym section-all-2 section">
     <div class="container">
-      <div class="row">
+      <div class="row shop-pro-slide">
         <div class="col-lg-12">
           <div class="gym-section-title">
             <span>'.$featuredProducts->name.'</span>
@@ -254,9 +270,7 @@ function get_products_html_section_by_slug( $featuredSlug ) {
           </div>
         </div>
       </div>
-      <div class="image-card-twelve">
-        <div class="row">'.$products.'</div>
-      </div>
+      <div class="row product-ml">'.$products.'</div>
     </div>
   </div>';
 
