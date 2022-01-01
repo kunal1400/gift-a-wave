@@ -10,10 +10,12 @@ Text Domain: bootstrapstarter
 
 a {
   color: #000;
+  text-decoration: none;
 }
 a:hover,
 a:focus {
   color: #000;
+  text-decoration: none;  
 }
 body .bpack-btn-four,
 body .bpack-btn-three,
@@ -63,7 +65,7 @@ body {
   .woocommerce ul.products[class*=columns-] li.product, .woocommerce-page ul.products[class*=columns-] li.product{
     width: 100% !important;
     clear: none!important;
-  }    
+  }
 }
 /* Shop loop item CSS: End */
 
@@ -78,7 +80,7 @@ body {
   color: #000 !important;
   box-shadow: 0 0 20px rgba(0,0,0,.1);
   background: #fff;
-  margin-left: 70px;
+  /* margin-left: 70px; */
   font-weight:500;
   font-size:15px;
   cursor:pointer;
@@ -194,20 +196,20 @@ span.woocommerce-input-wrapper {
 .page-numbers {
   border: none !important;
 }
-.woocommerce-pagination .page-numbers a:link, 
+.woocommerce-pagination .page-numbers a:link,
 .woocommerce-pagination .page-numbers a:visited {
   display: block !important;
   background: #77a464 !important;
   color: #363636 !important;
   padding: 10px 14px !important;
 }
-.woocommerce-pagination .page-numbers a:link, 
+.woocommerce-pagination .page-numbers a:link,
 .woocommerce-pagination .page-numbers a:hover {
   display: block !important;
   background: #fff !important;
   color: #363636 !important;
 }
-.woocommerce-pagination .page-numbers .current, 
+.woocommerce-pagination .page-numbers .current,
 .woocommerce-pagination .page-numbers li a:hover {
   padding: 10px 14px !important;
   background: #77A464 !important;
