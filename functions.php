@@ -6,46 +6,48 @@
 *
 * For all page showing cart icon.
 **/
-function add_last_nav_item( $items ) {
-  $isValidOrderPage = false;
-  if ( !empty($_GET['orderId']) && !empty($_GET['productId']) ) {
-    $isValidOrderPage = isValidProductAndOrder( $_GET['orderId'], $_GET['productId'] );
-  }
-
-  /**
-  * If current user is administrator then showing them an option to download images so that they can download it for free
-  * It will be helpful for marketing
-  **/
-  $user = wp_get_current_user();
-  if ( getCustomizePageUrl() == get_permalink() && is_array($user->roles) && count($user->roles) > 0 ) {
-    if( in_array( 'administrator', $user->roles ) ) {
-      $isValidOrderPage = true;
+function add_last_nav_item( $items, $args ) {
+  if( $args->theme_location == 'primary' ) {
+    $isValidOrderPage = false;
+    if ( !empty($_GET['orderId']) && !empty($_GET['productId']) ) {
+      $isValidOrderPage = isValidProductAndOrder( $_GET['orderId'], $_GET['productId'] );
     }
-  }
 
-  if($isValidOrderPage) {
+    /**
+    * If current user is administrator then showing them an option to download images so that they can download it for free
+    * It will be helpful for marketing
+    **/
+    $user = wp_get_current_user();
+    if ( getCustomizePageUrl() == get_permalink() && is_array($user->roles) && count($user->roles) > 0 ) {
+      if( in_array( 'administrator', $user->roles ) ) {
+        $isValidOrderPage = true;
+      }
+    }
+
+    if($isValidOrderPage) {
+      $items .= '<li class="menu-item">
+          <a href="#" onclick="downloadCanvas()" title="Download" class="downloadPreviewButtons">
+            <i class="fa fa-cloud-download" aria-hidden="true"></i> Download
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" title="Preview in new tab" onclick="designWaveObject.openCanvasInNewTab()" class="downloadPreviewButtons">
+            <i class="fa fa-eye" aria-hidden="true"></i> Preview
+          </a>
+        </li>';
+    }
+
+    // Adding the cart icon to the menu
+    // $cart_count = WC()->cart->cart_contents_count;
     $items .= '<li class="menu-item">
-        <a href="#" onclick="downloadCanvas()" title="Download" class="downloadPreviewButtons">
-          <i class="fa fa-cloud-download" aria-hidden="true"></i> Download
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="#" title="Preview in new tab" onclick="designWaveObject.openCanvasInNewTab()" class="downloadPreviewButtons">
-          <i class="fa fa-eye" aria-hidden="true"></i> Preview
-        </a>
-      </li>';
-  }
-
-  // Adding the cart icon to the menu
-  // $cart_count = WC()->cart->cart_contents_count;
-  $items .= '<li class="menu-item">
-    <a href="'.wc_get_cart_url().'" title="" class="downloadPreviewButtons">
-      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-    </a>
-  </li>';
+      <a href="'.wc_get_cart_url().'" title="" class="downloadPreviewButtons">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      </a>
+    </li>';
+  }  
   return $items;
 }
-add_filter('wp_nav_menu_items','add_last_nav_item');
+add_filter('wp_nav_menu_items','add_last_nav_item', 10, 2);
 
 
 /**
@@ -117,6 +119,12 @@ function gaw_theme_setup() {
 
     // Adding primary navigations
     register_nav_menu( 'primary', __( 'Primary Menu', 'theme_name' ) );
+
+    // Adding footer navigations
+    register_nav_menu( 'footer-menu', __( 'Footer Menu', 'theme_name' ) );
+
+    // Adding footer links
+    register_nav_menu( 'footer-links', __( 'Footer Links', 'theme_name' ) );
 
     // Adding support for custom logo
     add_theme_support( 'custom-logo', array(
