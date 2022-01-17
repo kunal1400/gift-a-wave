@@ -55,7 +55,7 @@
               wp_nav_menu(array(
                 'menu_id' => "",
                 'container' => "ul",
-                'theme_location' => 'footer-link',
+                'theme_location' => 'footer-menu',
                 'menu_class' => ""
               ));
             ?>
@@ -90,7 +90,7 @@
             wp_nav_menu(array(
               'menu_id' => "",
               'container' => "ul",
-              'theme_location' => 'footer-link',
+              'theme_location' => 'footer-links',
               'menu_class' => ""
             ));
           ?>     
