@@ -14,10 +14,9 @@
                   echo '<h3>' . get_bloginfo('name') . '</h3>';
                 }
               ?>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te mpor incididunt ut.mco laboris nisi ut aliquip ex ea commodo.</p>
+            </div>           
             <ul class="contact-info">
-              <li><i class="fa fa-phone"></i> +1 (234) 567 890</li>
+              <li><i class="fa fa-phone"></i> +91-9584833502</li>
               <li><i class="fa fa-clock-o"></i> Working Hours: <br>Mon-Fri (9 am - 8 pm)</li>
             </ul>
           </div>
