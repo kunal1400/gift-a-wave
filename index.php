@@ -13,6 +13,7 @@ get_header(); ?>
 
 <?php get_template_part('templates/nav', 'fullwidth'); ?>
 
+<?php if( !is_checkout() || true ): ?>
 <div class="bdt-section-muted">
   <div class="container">
     <div class="row">
@@ -24,8 +25,9 @@ get_header(); ?>
     </div>
   </div>
 </div>
+<?php endif; ?>
 
-<section class="blog-single-section section-padding-bg">
+<section class="section-padding-bg">
   <div class="container">
     <div class="row">
       <div class="col-md-12">

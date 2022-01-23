@@ -8,6 +8,29 @@ Version: 1.0.1
 Text Domain: bootstrapstarter
 */
 
+/*** CHECKOUT PAGE STYLE ***/
+.woocommerce input,
+.woocommerce select,
+.woocommerce textarea,
+.select2-container--default .select2-selection--single,
+.woocommerce table.shop_table {
+  border: 1px solid #a4a1a1;
+}
+.woocommerce input,
+.woocommerce select,
+.woocommerce .select2-container--default .select2-selection--single{
+  height: 40px;
+}
+.woocommerce .select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 40px;
+  height: 100%;
+}
+.woocommerce form label {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+/*** /CHECKOUT PAGE STYLE ***/
+
 a {
   color: #000;
   text-decoration: none;
@@ -15,7 +38,7 @@ a {
 a:hover,
 a:focus {
   color: #000;
-  text-decoration: none;  
+  text-decoration: none;
 }
 body .bpack-btn-four,
 body .bpack-btn-three,
