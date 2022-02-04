@@ -9,6 +9,8 @@
 function add_last_nav_item( $items, $args ) {
   if( $args->theme_location == 'primary' ) {
     $isValidOrderPage = false;
+    $currentUserCanAddWaveProduct = false;
+
     if ( !empty($_GET['orderId']) && !empty($_GET['productId']) ) {
       $isValidOrderPage = isValidProductAndOrder( $_GET['orderId'], $_GET['productId'] );
     }
@@ -20,27 +22,76 @@ function add_last_nav_item( $items, $args ) {
     $user = wp_get_current_user();
     if ( getCustomizePageUrl() == get_permalink() && is_array($user->roles) && count($user->roles) > 0 ) {
       if( in_array( 'administrator', $user->roles ) ) {
-        $isValidOrderPage = true;
+        $currentUserCanAddWaveProduct = true;
       }
     }
 
-    if($isValidOrderPage) {
-      $items .= '<li class="menu-item">
-          <a href="#" onclick="downloadCanvas()" title="Download" class="downloadPreviewButtons">
+    if($isValidOrderPage || $currentUserCanAddWaveProduct) {
+      $items .= '<li class="nav-item">
+          <a href="#" onclick="downloadCanvas()" class="nav-link downloadPreviewButtons">
             <i class="fa fa-cloud-download" aria-hidden="true"></i> Download
           </a>
         </li>
-        <li class="menu-item">
-          <a href="#" title="Preview in new tab" onclick="designWaveObject.openCanvasInNewTab()" class="downloadPreviewButtons">
+        <li class="nav-item">
+          <a href="#" title="Preview in new tab" onclick="designWaveObject.openCanvasInNewTab()" class="nav-link downloadPreviewButtons">
             <i class="fa fa-eye" aria-hidden="true"></i> Preview
           </a>
         </li>';
     }
 
+    if( $isValidOrderPage ) {
+      $qrcodeUrl = esc_url( add_query_arg( 'orderId', $_GET['orderId'], site_url( '/some_other_page/' ) ) );
+
+      $items .= '<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false">
+            <i class="fa fa-qrcode"></i> Add QR Code
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+                <a class="dropdown-item" 
+                href="#"
+                onclick="addQrCode(this)">None</a>
+              </li>
+            <li>
+            <li>
+                <a class="dropdown-item" 
+                href="#" 
+                data-value="left-top" 
+                data-qrLink="'.$qrcodeUrl.'"
+                onclick="addQrCode(this)">Top Left</a>
+              </li>
+            <li>
+              <a class="dropdown-item" 
+                href="#" 
+                data-value="right-top" 
+                data-qrLink="'.$qrcodeUrl.'"
+                onclick="addQrCode(this)">Top Right</a>
+            </li>
+            <li>
+                <a class="dropdown-item" 
+                  href="#" 
+                  data-value="left-bottom" 
+                  data-qrLink="'.$qrcodeUrl.'"
+                  onclick="addQrCode(this)">Bottom Left</a>
+              </li>
+            <li>
+              <a class="dropdown-item" 
+                href="#" 
+                data-value="right-bottom" 
+                data-qrLink="'.$qrcodeUrl.'"
+                onclick="addQrCode(this)">Bottom Right</a>
+            </li>
+          </ul>       
+        </a>
+      </li>';
+    }
+
     // Adding the cart icon to the menu
     // $cart_count = WC()->cart->cart_contents_count;
-    $items .= '<li class="menu-item">
-      <a href="'.wc_get_cart_url().'" title="" class="downloadPreviewButtons">
+    $items .= '<li class="nav-item">
+      <a href="'.wc_get_cart_url().'" title="" class="nav-link downloadPreviewButtons">
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
       </a>
     </li>';
@@ -49,6 +100,25 @@ function add_last_nav_item( $items, $args ) {
 }
 add_filter('wp_nav_menu_items','add_last_nav_item', 10, 2);
 
+/**
+* Adding class to nav menu items i.e <li>
+**/
+function add_additional_class_on_li($classes, $item, $args) {
+  if(isset($args->add_li_class)) {
+    $classes[] = $args->add_li_class;
+  }
+  return $classes;
+}
+add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
+
+/**
+* Adding class to nav menu item link i.e <a>
+**/
+function add_link_atts($atts) {
+  $atts['class'] = "nav-link";
+  return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'add_link_atts');
 
 /**
 * Adding all css file required in this theme, also keep an eye for better performance

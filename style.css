@@ -8,22 +8,31 @@ Version: 1.0.1
 Text Domain: bootstrapstarter
 */
 
-a {
+a,
+.navbar a {
   color: #000;
   text-decoration: none;
+  font-family: "nunito",sans-serif;
+  font-weight: 600;
 }
+
 a:hover,
-a:focus {
+a:focus,
+.navbar a:hover,
+.navbar a:focus {
   color: #000;
   text-decoration: none;  
+  font-family: "nunito",sans-serif;
+  font-weight: 600;
 }
+
 body .bpack-btn-four,
 body .bpack-btn-three,
 body .bpack-btn-eight,
 body .bpack-btn-nine {
   margin-left: 0;
 }
-body .downloadPreviewButtons {
+/* body .downloadPreviewButtons {
   margin: 15px 0;
   padding: 10px 15px;
 }
@@ -31,7 +40,7 @@ body .downloadPreviewButtons {
   float: none;
   margin: 0;
   line-height: normal !important;
-}
+} */
 body {
   font-size: 16px;
 }
