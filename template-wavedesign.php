@@ -79,15 +79,32 @@ if ( is_array($user->roles) && count($user->roles) > 0 ) {
             <table class="table table-bordered">
               <tbody>
                 <tr>
-                  <td><b>Enter Canvas Width (PX)</b></td>
-                  <td><input min="0" step="5" required="required" type="number" class="form-control" value="'.$default_canvas_width.'" id="canvas_width" name="default_canvas_width"></td>
+                  <td></td>
+                  <td><b>Width</b></td>
+                  <td><b>Height</b></td>
                 </tr>
                 <tr>
-                  <td><b>Enter Canvas Height (PX)</b></td>
-                  <td><input min="0" step="5" required="required" type="number" class="form-control" value="'.$default_canvas_height.'" id="canvas_height" name="default_canvas_height"></td>
+                  <td>px (Pixels)</td>
+                  <td><input min="0" step="5" required="required" type="number" class="form-control" value="'.$default_canvas_width.'" id="canvas_width_px" name="default_canvas_width"></td>
+                  <td><input min="0" step="5" required="required" type="number" class="form-control" value="'.$default_canvas_height.'" id="canvas_height_px" name="default_canvas_height"></td>
                 </tr>
                 <tr>
-                  <td colspan="2">
+                  <td>mm (Millimetre)</td>
+                  <td><input step="0.01" required="required" type="number" class="form-control" value="0" name="canvas_width_mm"></td>
+                  <td><input step="0.01" required="required" type="number" class="form-control" value="0" name="canvas_height_mm"></td>
+                </tr>
+                <tr>
+                  <td>cm (Centimetre)</td>
+                  <td><input step="0.01" required="required" type="number" class="form-control" value="0" name="canvas_width_cm"></td>
+                  <td><input step="0.01" required="required" type="number" class="form-control" value="0" name="canvas_height_cm"></td>
+                </tr>
+                <tr>
+                  <td>Inch</td>
+                  <td><input step="0.01" required="required" type="number" class="form-control" value="0" name="canvas_width_inch"></td>
+                  <td><input step="0.01" required="required" type="number" class="form-control" value="0" name="canvas_height_inch"></td>
+                </tr>
+                <tr>
+                  <td colspan="3">
                     <input type="hidden" name="productId" value="'.$productId.'" />
                     <input type="hidden" name="orderId" value="'.$orderId.'" />
                     <button type="submit" class="bpack-btn">Update Canvas Size</button>
@@ -97,9 +114,6 @@ if ( is_array($user->roles) && count($user->roles) > 0 ) {
             </table>
           </div>
         </form>';
-        echo '<h4>Dimensions in other unit</h4>
-        <div class="canvasOtherUnits">Loading...</div>';
-        echo '</div>';
     }
     ?>
   </div>

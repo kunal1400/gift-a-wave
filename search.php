@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<section class="blog-single-section section-padding-bg">
+<section class="section-padding-bg">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
