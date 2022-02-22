@@ -26,7 +26,7 @@ function add_last_nav_item( $items, $args ) {
       }
     }
 
-    if($isValidOrderPage || $currentUserCanAddWaveProduct) {
+    if( $isValidOrderPage || $currentUserCanAddWaveProduct ) {
       $items .= '<li class="nav-item">
           <a href="#" onclick="downloadCanvas()" class="nav-link downloadPreviewButtons">
             <i class="fa fa-cloud-download" aria-hidden="true"></i> Download
@@ -43,55 +43,6 @@ function add_last_nav_item( $items, $args ) {
     if( $currentUserCanAddWaveProduct ) {
       $items .= '<li class="nav-item text-center">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateCanvasModal">Update Canvas Size</button>
-      </li>';
-    }
-
-    if( $isValidOrderPage ) {
-      $qrcodeUrl = esc_url( add_query_arg( 'orderId', $_GET['orderId'], site_url( '/some_other_page/' ) ) );
-
-      $items .= '<li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
-            data-bs-toggle="dropdown" 
-            aria-expanded="false">
-            <i class="fa fa-qrcode"></i> Add QR Code
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>
-                <a class="dropdown-item" 
-                href="#"
-                onclick="addQrCode(this)">None</a>
-              </li>
-            <li>
-            <li>
-                <a class="dropdown-item" 
-                href="#" 
-                data-value="left-top" 
-                data-qrLink="'.$qrcodeUrl.'"
-                onclick="addQrCode(this)">Top Left</a>
-              </li>
-            <li>
-              <a class="dropdown-item" 
-                href="#" 
-                data-value="right-top" 
-                data-qrLink="'.$qrcodeUrl.'"
-                onclick="addQrCode(this)">Top Right</a>
-            </li>
-            <li>
-                <a class="dropdown-item" 
-                  href="#" 
-                  data-value="left-bottom" 
-                  data-qrLink="'.$qrcodeUrl.'"
-                  onclick="addQrCode(this)">Bottom Left</a>
-              </li>
-            <li>
-              <a class="dropdown-item" 
-                href="#" 
-                data-value="right-bottom" 
-                data-qrLink="'.$qrcodeUrl.'"
-                onclick="addQrCode(this)">Bottom Right</a>
-            </li>
-          </ul>       
-        </a>
       </li>';
     }
 
