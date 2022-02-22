@@ -39,6 +39,13 @@ function add_last_nav_item( $items, $args ) {
         </li>';
     }
 
+    // Option to update canvas size only to admin
+    if( $currentUserCanAddWaveProduct ) {
+      $items .= '<li class="nav-item text-center">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateCanvasModal">Update Canvas Size</button>
+      </li>';
+    }
+
     if( $isValidOrderPage ) {
       $qrcodeUrl = esc_url( add_query_arg( 'orderId', $_GET['orderId'], site_url( '/some_other_page/' ) ) );
 
@@ -293,66 +300,66 @@ function new_excerpt_more($more) {
 add_filter('excerpt_more', 'new_excerpt_more');
 
 
-/**
-* This function is returning the section of featured products by category slug
-**/
-function get_products_html_section_by_slug( $featuredSlug ) {
-  $featuredProducts = get_term_by('slug', $featuredSlug, 'product_cat');
-  $products = "";
+// /**
+// * This function is returning the section of featured products by category slug
+// **/
+// function get_products_html_section_by_slug( $featuredSlug ) {
+//   $featuredProducts = get_term_by('slug', $featuredSlug, 'product_cat');
+//   $products = "";
 
-  $loop = new WP_Query(array(
-      'post_type'      => 'product',
-      'posts_per_page' => 5,
-      'product_cat'    => $featuredSlug
-  ));
+//   $loop = new WP_Query(array(
+//       'post_type'      => 'product',
+//       'posts_per_page' => 5,
+//       'product_cat'    => $featuredSlug
+//   ));
 
-  while ( $loop->have_posts() ) : $loop->the_post();
-    $_product = wc_get_product( $loop->post->ID );
-    $products .= '<div class="col-md-4 col-sm-12">
-      <div class="product-card-one">        
-         '.woocommerce_get_product_thumbnail( 'woocommerce_single' ).'        
-        <figcaption>
-          <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
-          <div class="price">'.$_product->get_price_html().'</div>
-          <div class="button_wrappers d-flex justify-content-between">
-            <a href="'.site_url( 'wave-design/?productId='.$loop->post->ID ).'" class="bpack-btn-nine">Customize</a>            
-              '.sprintf( '<a href="%s" data-quantity="1" class="%s add_to_cart_button" %s>%s</a>',
-                  esc_url( $_product->add_to_cart_url() ),
-                  esc_attr( implode( ' ', array_filter( array(
-                      'button', 'product_type_' . $_product->get_type(),
-                      $_product->is_purchasable() && $_product->is_in_stock() ? 'add_to_cart_button' : '',
-                      $_product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
-                  ) ) ) ),
-                  wc_implode_html_attributes( array(
-                      'data-product_id'  => $_product->get_id(),
-                      'data-product_sku' => $_product->get_sku(),
-                      'aria-label'       => $_product->add_to_cart_description(),
-                      'rel'              => 'nofollow',
-                  ) ),
-                  esc_html( $_product->add_to_cart_text() )
-              ).'
-          </div>
-        </figcaption>
-      </div>
-    </div>';
-  endwhile;
-  wp_reset_query();
+//   while ( $loop->have_posts() ) : $loop->the_post();
+//     $_product = wc_get_product( $loop->post->ID );
+//     $products .= '<div class="col-md-4 col-sm-12">
+//       <div class="product-card-one">        
+//          '.woocommerce_get_product_thumbnail( 'woocommerce_single' ).'        
+//         <figcaption>
+//           <h3><a href="'.get_permalink().'">'.get_the_title().'</a></h3>
+//           <div class="price">'.$_product->get_price_html().'</div>
+//           <div class="button_wrappers d-flex justify-content-between">
+//             <a href="'.site_url( 'wave-design/?productId='.$loop->post->ID ).'" class="bpack-btn-nine">Customize</a>            
+//               '.sprintf( '<a href="%s" data-quantity="1" class="%s add_to_cart_button" %s>%s</a>',
+//                   esc_url( $_product->add_to_cart_url() ),
+//                   esc_attr( implode( ' ', array_filter( array(
+//                       'button', 'product_type_' . $_product->get_type(),
+//                       $_product->is_purchasable() && $_product->is_in_stock() ? 'add_to_cart_button' : '',
+//                       $_product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : '',
+//                   ) ) ) ),
+//                   wc_implode_html_attributes( array(
+//                       'data-product_id'  => $_product->get_id(),
+//                       'data-product_sku' => $_product->get_sku(),
+//                       'aria-label'       => $_product->add_to_cart_description(),
+//                       'rel'              => 'nofollow',
+//                   ) ),
+//                   esc_html( $_product->add_to_cart_text() )
+//               ).'
+//           </div>
+//         </figcaption>
+//       </div>
+//     </div>';
+//   endwhile;
+//   wp_reset_query();
 
-  return '<div id="" class="saas gym section-all-2 section">
-    <div class="container">
-      <div class="row shop-pro-slide">
-        <div class="col-lg-12">
-          <div class="gym-section-title">
-            <span>'.$featuredProducts->name.'</span>
-            <h2>'.$featuredProducts->description.'</h2>
-          </div>
-        </div>
-      </div>
-      <div class="row product-ml">'.$products.'</div>
-    </div>
-  </div>';
+//   return '<div id="" class="saas gym section-all-2 section">
+//     <div class="container">
+//       <div class="row shop-pro-slide">
+//         <div class="col-lg-12">
+//           <div class="gym-section-title">
+//             <span>'.$featuredProducts->name.'</span>
+//             <h2>'.$featuredProducts->description.'</h2>
+//           </div>
+//         </div>
+//       </div>
+//       <div class="row product-ml">'.$products.'</div>
+//     </div>
+//   </div>';
 
-}
+// }
 
 
 /**
