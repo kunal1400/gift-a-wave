@@ -24,8 +24,8 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 <?php if ( $has_orders ) : ?>
 
 	<div class="table-responsive">
-		<table class="table table-bordered woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
-			<thead>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
 				<tr>
 					<?php foreach ( wc_get_account_orders_columns() as $column_id => $column_name ) : ?>
 						<th class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr( $column_id ); ?>"><span class="nobr"><?php echo esc_html( $column_name ); ?></span></th>

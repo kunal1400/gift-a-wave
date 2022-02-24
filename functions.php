@@ -72,11 +72,13 @@ add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
 /**
 * Adding class to nav menu item link i.e <a>
 **/
-function add_link_atts($atts) {
-  $atts['class'] = "nav-link";
+function add_link_atts($atts, $item, $args) {
+  if( $args->theme_location == 'primary' ) {
+    $atts['class'] = "nav-link";
+  }
   return $atts;
 }
-add_filter( 'nav_menu_link_attributes', 'add_link_atts');
+add_filter( 'nav_menu_link_attributes', 'add_link_atts', 10, 3);
 
 /**
 * Adding all css file required in this theme, also keep an eye for better performance
@@ -95,8 +97,9 @@ function bootstrapstarter_enqueue_styles() {
     // wp_enqueue_style( 'magnific-popup-css', get_template_directory_uri() . '/css/magnific-popup.css', $dependencies );
     // wp_enqueue_style( 'jquery.fancybox-css', get_template_directory_uri() . '/css/jquery.fancybox.css', $dependencies );
     // wp_enqueue_style( 'owl.carousel.min-css', get_template_directory_uri() . '/css/owl.carousel.min.css', $dependencies );
-    wp_enqueue_style( 'megapack-style-css', get_template_directory_uri() . '/css/megapack-style.css', $dependencies );
-    wp_enqueue_style( 'megapack-responsive-css', get_template_directory_uri() . '/css/megapack-responsive.css', $dependencies );
+
+    // wp_enqueue_style( 'megapack-style-css', get_template_directory_uri() . '/css/megapack-style.css', $dependencies );
+    // wp_enqueue_style( 'megapack-responsive-css', get_template_directory_uri() . '/css/megapack-responsive.css', $dependencies );
     wp_enqueue_style( 'gaw_style_css', get_stylesheet_uri(), $dependencies );
 }
 
@@ -217,28 +220,29 @@ add_filter('post_class', function($classes, $class, $product_id) {
  * @authorURL www.codexworld.com
  */
 function get_breadcrumb() {
-    echo '<ul id="tm-breadcrumb" class="bdt-breadcrumb "><li><a href="'.home_url().'" rel="nofollow">Home</a></li>';
+    echo '<nav aria-label="breadcrumb" class="py-3"><ol class="breadcrumb mb-0 text-center">
+      <li class="breadcrumb-item"><a href="'.home_url().'" rel="nofollow">Home</a></li>';
     if (is_category() || is_single()) {
-        echo '<li>';
+        echo '<li class="breadcrumb-item">';
         the_category(' &bull; ');
         echo '</li>';
         if (is_single()) {
-          echo '<li><span>';
+          echo '<li class="breadcrumb-item">';
           the_title();
-          echo '</span></li>';
+          echo '</li>';
         }
     } elseif (is_page()) {
-        echo '<li><span>';
+        echo '<li class="breadcrumb-item">';
         echo the_title();
-        echo '</span></li>';
+        echo '</li>';
     } elseif (is_search()) {
-        echo '<li><span>';
+        echo '<li class="breadcrumb-item">';
         echo '"<em>';
         echo the_search_query();
         echo '</em>"';
-        echo '</span></li>';
+        echo '</li>';
     }
-    echo '</ul>';
+    echo '</ol></nav>';
 }
 
 /**

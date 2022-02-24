@@ -122,9 +122,9 @@ body {
 }
 /* Add to cart button css: END */
 
-.cover-container {
+/* .cover-container {
   height: 100vh;
-}
+} */
 
 .woocommerce .quantity .qty {
     padding: 0;
@@ -147,24 +147,30 @@ span.woocommerce-input-wrapper {
 }
 
 /*** Product Customizer css start ***/
-.outputwaveimage {
+.page-template-template-wavedesign {
+  background: #f4f3f3;
+}
+#canvasForQr {
+  display: none;
+}
+/* .outputwaveimage {
   position: relative;
   background: #f4f3f3;
   text-shadow: none;
   overflow: scroll;
 }
 .outputwaveimage canvas {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 6%);
-    -moz-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.06);
-    -ms-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.06);
-    -webkit-box-shadow: 0 10px 20px 0 rgb(0 0 0 / 6%);
-}
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  box-shadow: 0 10px 20px 0 rgb(0 0 0 / 6%);
+  -moz-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.06);
+  -ms-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.06);
+  -webkit-box-shadow: 0 10px 20px 0 rgb(0 0 0 / 6%);
+} */
 
 /*** END ***/
 .list-group-item.is-active a {
@@ -269,3 +275,8 @@ span.woocommerce-input-wrapper {
     font-weight: 600;
 }
 /*** /CHECKOUT PAGE STYLE ***/
+
+.bdt-section-muted {
+  background-image: url("img/bg0.png");
+  padding: 25px 0;
+}

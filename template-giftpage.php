@@ -55,7 +55,7 @@ if ( is_array($user->roles) && count($user->roles) > 0 ) {
 }
 ?>
 
-<div class="container cover-container">
+<div class="container">
   <div class="row">    
     <div class="col-md-12 text-center">
         <div id="outputwaveimage"></div>

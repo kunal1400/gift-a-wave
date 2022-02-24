@@ -34,7 +34,7 @@
 </div>
 */?>
 
-<div role="navigation" class="navbar navbar-expand-lg">
+<div role="navigation" class="navbar navbar-expand-lg bg-white">
   <div class="container">
     <?php
       $custom_logo_id = get_theme_mod( 'custom_logo' );

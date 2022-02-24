@@ -72,7 +72,7 @@ if ( is_array($user->roles) && count($user->roles) > 0 ) {
 }
 ?>
 
-<div class="container-fluid cover-container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
       <?php dynamic_sidebar( 'wave-customization-sidebar' ); ?>
