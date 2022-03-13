@@ -7,7 +7,6 @@ Description: A basic theme using the Bootstrap framework.
 Version: 1.0.1
 Text Domain: bootstrapstarter
 */
-a,
 .navbar a {
   color: #000;
   text-decoration: none;
@@ -15,8 +14,6 @@ a,
   font-weight: 600;
 }
 
-a:hover,
-a:focus,
 .navbar a:hover,
 .navbar a:focus {
   color: #000;
@@ -40,9 +37,9 @@ body .bpack-btn-nine {
   margin: 0;
   line-height: normal !important;
 } */
-body {
+/* body {
   font-size: 16px;
-}
+} */
 .woocommerce table.my_account_orders {
   font-size: unset;
 }

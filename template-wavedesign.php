@@ -74,10 +74,10 @@ if ( is_array($user->roles) && count($user->roles) > 0 ) {
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 bg-white">
       <?php dynamic_sidebar( 'wave-customization-sidebar' ); ?>
     </div>
-    <div class="col-md-9 nopadding">
+    <div class="col-md-9">
       <?php
       if ( have_posts() ) {
         while ( have_posts() ) : the_post();

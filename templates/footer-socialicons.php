@@ -1,8 +1,8 @@
-<footer class="text-center text-lg-start bg-light text-muted">  
+<footer class="mt-5 pt-3 bg-light">  
   <div class="container">
     <div class="row">
       <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-        <div class="widget about-widget">                    
+        <div class="widget about-widget">
           <div class="footer-logo">
             <?php
               $custom_logo_id = get_theme_mod( 'custom_logo' );
@@ -80,17 +80,25 @@
   </div>
   
   <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    <p>Copyright @2021 <a href="<?php echo site_url() ?>"><?php echo get_bloginfo('name') ?>.</a> All Rights Reserved.</p>
-    <?php
-      wp_nav_menu(array(
-        'menu_id' => "",
-        'container' => "ul",
-        'theme_location' => 'footer-links',
-        'menu_class' => "list-inline",
-        'add_li_class'  => 'list-inline-item'
-      ));
-    ?>
+  <div class="py-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          Copyright @2021 <a href="<?php echo site_url() ?>"><?php echo get_bloginfo('name') ?>.</a> All Rights Reserved.
+        </div>
+        <div class="col-sm-6">
+          <?php
+            wp_nav_menu(array(
+              'menu_id' => "",
+              'container' => "ul",
+              'theme_location' => 'footer-links',
+              'menu_class' => "nav justify-content-end",
+              'add_li_class'  => 'mx-2'
+            ));
+          ?>
+        </div>
+      </div>
+    </div>    
   </div>
   <!-- Copyright -->
 </footer>
