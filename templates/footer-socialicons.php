@@ -1,6 +1,6 @@
-<footer class="mt-5 pt-3 bg-light">  
+<footer class="mt-5 bg-light">  
   <div class="container">
-    <div class="row">
+    <div class="py-5 row">
       <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
         <div class="widget about-widget">
           <div class="footer-logo">
@@ -15,8 +15,8 @@
             ?>
           </div>           
           <ul class="contact-info list-unstyled">
-            <li><i class="fa fa-phone"></i> +91-9584833502</li>
-            <li><i class="fa fa-clock-o"></i> Working Hours: <br>Mon-Fri (9 am - 8 pm)</li>
+            <li class="mb-2"><i class="fa fa-phone"></i> +91-9584833502</li>
+            <li class="mb-2"><i class="fa fa-clock-o"></i> Working Hours: <br>Mon-Fri (9 am - 8 pm)</li>
           </ul>
         </div>
       </div>
@@ -69,7 +69,7 @@
               <div class="input-group">
                 <input type="email" class="form-control" placeholder="Your email..">
                 <div class="input-group-append">
-                  <button class="btn btn-success" type="submit"><i class="fa fa-envelope"></i></button>
+                  <button class="btn btn-primary" type="submit"><i class="fa fa-envelope"></i></button>
                 </div>
               </div>
             </form>
@@ -80,11 +80,11 @@
   </div>
   
   <!-- Copyright -->
-  <div class="py-3" style="background-color: rgba(0, 0, 0, 0.2);">
+  <div class="section-copyright py-3" style="background-color: rgba(0, 0, 0, 0.2);">
     <div class="container">
       <div class="row">
         <div class="col-sm-6">
-          Copyright @2021 <a href="<?php echo site_url() ?>"><?php echo get_bloginfo('name') ?>.</a> All Rights Reserved.
+          Copyright @<?php echo date('Y'); ?> <a href="<?php echo site_url() ?>"><?php echo get_bloginfo('name') ?>.</a> All Rights Reserved.
         </div>
         <div class="col-sm-6">
           <?php

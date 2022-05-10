@@ -31,19 +31,17 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'col-md-12 ', $product ); ?>>
-
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'row ', $product ); ?>>
 	<?php do_action( 'woocommerce_before_single_product_summary' ); ?>
-
 	<div class="summary entry-summary">
 		<h2><?php the_title(); ?></h2>
 		<?php do_action( 'woocommerce_single_product_summary' ); ?>
 	</div>
 
 </div>
-<div class="col-md-12">
-	<?php	do_action( 'woocommerce_after_single_product_summary' ); ?>
+<div class="col-12">
+	<?php do_action( 'woocommerce_after_single_product_summary' ); ?>
 </div>
-<div class="col-md-12">
+<div class="col-12">
 	<?php do_action( 'woocommerce_after_single_product' ); ?>
 </div>

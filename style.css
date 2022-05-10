@@ -7,26 +7,49 @@ Description: A basic theme using the Bootstrap framework.
 Version: 1.0.1
 Text Domain: bootstrapstarter
 */
-.navbar a {
-  color: #000;
+* {
+  /* font-family: "nunito",sans-serif;
+  font-family: 'Montserrat' ,sans-serif; */
+}
+a {
+  color: var(--bs-red);
   text-decoration: none;
-  font-family: "nunito",sans-serif;
+}
+a:hover,
+a:focus {
+  color: var(--bs-red);
+  text-decoration: underline;
+}
+.navbar a {
+  color: var(--bs-dark);
+  text-decoration: none;
   font-weight: 600;
 }
-
 .navbar a:hover,
 .navbar a:focus {
-  color: #000;
-  text-decoration: none;  
-  font-family: "nunito",sans-serif;
+  color: var(--bs-dark);
+  text-decoration: underline;  
   font-weight: 600;
 }
-
+.section-copyright a {
+  color: var(--bs-gray-dark);
+}
 body .bpack-btn-four,
 body .bpack-btn-three,
 body .bpack-btn-eight,
 body .bpack-btn-nine {
   margin-left: 0;
+}
+.iconWrapper {
+  width: 5rem;
+  height: 5rem;
+  margin-bottom: 1.25rem;
+  background-color: var(--bs-red);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bs-white);
 }
 /* body .downloadPreviewButtons {
   margin: 15px 0;
@@ -58,9 +81,10 @@ body .bpack-btn-nine {
   font-size: 16px !important;
 }
 .woocommerce ul.products li.gaw_product_loop_item .woocommerce-loop-product__title {
-  font-size: 20px;
-  font-weight: 600;
+  /* font-size: 20px;
+  font-weight: 600; */
   text-transform: capitalize;
+  color: var(--bs-body-color);
 }
 .woocommerce ul.products li.gaw_product_loop_item .button_wrappers a:first-child {
   display: none;
@@ -82,10 +106,10 @@ body .bpack-btn-nine {
 .add_to_cart_button,
 .woocommerce ul.products li.product .button.add_to_cart_button{
   text-decoration: none;
-  color: #000 !important;
+  color: var(--bs-dark) !important;
   box-shadow: 0 0 20px rgba(0,0,0,.1);
-  background: #fff;
-  /* margin-left: 70px; */
+  background: var(--bs-white);
+  margin: 0;
   font-weight:500;
   font-size:15px;
   cursor:pointer;
@@ -187,9 +211,8 @@ span.woocommerce-input-wrapper {
 .giftawave-navbar-brand {
     float: left;
     padding: 15px 0;
-    font-size: 34px !important;
-    font-family: 'Montserrat' ,sans-serif;
-    color: #000;
+    font-size: 34px !important;    
+    color: var(--bs-dark);
     display: inline-block;
     line-height: normal;
 }
@@ -201,30 +224,30 @@ span.woocommerce-input-wrapper {
 
 /** WooCommerce Pagination CSS Start **/
 .woocommerce nav.woocommerce-pagination ul li {
-  border-right: 4px solid #fff;
-  background: white !important;
+  border-right: 4px solid var(--bs-white);
+  background: var(--bs-white) !important;
 }
 .page-numbers {
   border: none !important;
 }
-.woocommerce-pagination .page-numbers a:link,
-.woocommerce-pagination .page-numbers a:visited {
+/* .woocommerce-pagination .page-numbers a:visited, */
+.woocommerce-pagination .page-numbers a:link {
   display: block !important;
-  background: #77a464 !important;
-  color: #363636 !important;
+  background: var(--bs-red) !important;
+  color: var(--bs-gray-dark) !important;
   padding: 10px 14px !important;
 }
 .woocommerce-pagination .page-numbers a:link,
 .woocommerce-pagination .page-numbers a:hover {
   display: block !important;
-  background: #fff !important;
-  color: #363636 !important;
+  background: var(--bs-white) !important;
+  color: var(--bs-gray-dark) !important;
 }
 .woocommerce-pagination .page-numbers .current,
 .woocommerce-pagination .page-numbers li a:hover {
   padding: 10px 14px !important;
-  background: #77A464 !important;
-  color: #fff !important;
+  background: var(--bs-red) !important;
+  color: var(--bs-white) !important;
 }
 /** WooCommerce Pagination CSS END **/
 
@@ -274,6 +297,19 @@ span.woocommerce-input-wrapper {
 /*** /CHECKOUT PAGE STYLE ***/
 
 .bdt-section-muted {
-  background-image: url("img/bg0.png");
-  padding: 25px 0;
+  background-image: url("img/newsletter_bg.jpg");
+  padding: 4rem 0;
+  color: var(--bs-white);
+}
+.bdt-section-muted a {
+  color: var(--bs-white);
+}
+.contact-info .fa {
+  background-color: var(--bs-red);
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 18px;
+  color: var(--bs-white);
 }
