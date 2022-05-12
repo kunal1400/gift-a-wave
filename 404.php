@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <?php get_template_part('templates/nav', 'fullwidth'); ?>
 
-<section class="blog-single-section section-padding-bg">
+<section class="blog-single-section mt-5">
   <div class="container">
     <div class="row">
       <div class="col-md-12">

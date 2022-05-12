@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<section class="blog-single-section section-padding-bg">
+<section class="blog-single-section mt-5">
   <div class="container">
     <div class="row">
       <div class="col-md-12">

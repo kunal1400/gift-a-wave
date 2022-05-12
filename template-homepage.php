@@ -15,7 +15,7 @@ get_header();
           <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_khggnjkd.json"  background="transparent"  speed="0.1"  style="width: 100%; height: auto;"  loop autoplay></lottie-player>                  
         </div>
         <div class="col-md-6 py-5">
-          <h1 class="text-end"><?php _e('Generate') ?>. <span><?php _e('Customize')?>.</span> <?php _e('Download') ?>.</h1>
+          <h1><?php _e('Generate') ?>. <span class="text-warning"><?php _e('Customize')?>.</span> <?php _e('Download') ?>.</h1>
           <p><?php _e('We helps you create your unique Wave Art from your own audio, voice or pick a song from Spotify') ?>.</p>
           <div class="mt-4 text-end">
             <a class="pw-btn gradient-background" href="<?php echo site_url('wave-design') ?>"><?php _e('Start Designing') ?></a>

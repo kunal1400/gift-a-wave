@@ -49,22 +49,18 @@ if ( !empty($_GET['orderId']) && !empty($_GET['productId']) ) {
 $user = wp_get_current_user();
 if ( is_array($user->roles) && count($user->roles) > 0 ) {
   if( in_array( 'administrator', $user->roles ) ) {
-    echo '<div class="modal fade" id="updateCanvasModal" tabindex="-1" role="dialog" aria-labelledby="Modal To Update Canvas Size" aria-hidden="true">
+    echo '<div class="modal" id="updateCanvasModal" tabindex="-1" role="dialog" aria-labelledby="Modal To Update Canvas Size" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Update Canvas Size</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
             </button>
           </div>
           <div class="modal-body">
             '.do_shortcode("[update_canvas_form]").'
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+          </div>          
         </div>
       </div>
     </div>';

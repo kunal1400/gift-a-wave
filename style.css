@@ -313,3 +313,6 @@ span.woocommerce-input-wrapper {
   font-size: 18px;
   color: var(--bs-white);
 }
+.pw-canvas-tabs a {
+  color: var(--bs-dark);
+}
