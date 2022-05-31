@@ -15,6 +15,9 @@ a {
   color: var(--bs-red);
   text-decoration: none;
 }
+img {
+  max-width: 100%;
+}
 a:hover,
 a:focus {
   color: var(--bs-red);
